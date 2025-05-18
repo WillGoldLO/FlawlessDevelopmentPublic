@@ -19,6 +19,5 @@ jobs:
 
       - name: Push to Mirror
         run: |
-          git remote add mirror git@github.com/WillGoldLO/FlawlessDevelopmentPublic.git
+          git remote add mirror git@github.com:WillGoldLO/FlawlessDevelopmentPublic.git
           git push mirror main --force
-          
