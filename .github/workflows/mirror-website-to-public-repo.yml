@@ -1,0 +1,24 @@
+name: Mirror to Private Repo
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.MIRROR_SSH_KEY }}
+
+      - name: Push to Mirror
+        run: |
+          git remote add mirror git@github.com/WillGoldLO/FlawlessDevelopmentPublic.git
+          git push mirror main --force
+          
