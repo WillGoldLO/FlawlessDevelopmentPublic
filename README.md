@@ -6,6 +6,13 @@ Contains all components and dependencies authored by Flawless Development necess
 Structure:
 ```
 <repo root>
+├── .github/
+│   └── workflows/
+│       ├── FlawlessByDesign.yml
+│       ├── FlawlessDevelopment.yml
+│       ├── CustomerASite1.yml
+│       └── ...
+│
 ├── FlawlessDevelopment/
 │   ├── FlawlessAPI/
 │   │   ├── Endpoints/
@@ -34,7 +41,7 @@ Structure:
 │           └── images/
 │   
 │
-├── <customer>/
+├── <customer A>/
 │   ├── CustomerAPI/
 │   │   ├── Endpoints/
 │   │   └── Properties/
@@ -47,13 +54,5 @@ Structure:
 │   │       ├── css/
 │   │       ├── fonts/
 │   │       └── images/
-│   │   
-│   ├── <customer site 2>/
-│   │   ├── Components/
-│   │   ├── Pages/
-│   │   ├── Properties/
-│   │   └── wwwroot/
-│   │       ├── css/
-│   │       ├── fonts/
-│   │       └── images/
+
 ```
