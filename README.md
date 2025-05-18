@@ -56,4 +56,4 @@ Structure:
 │   │       ├── css/
 │   │       ├── fonts/
 │   │       └── images/
-│   │   ```
+```
