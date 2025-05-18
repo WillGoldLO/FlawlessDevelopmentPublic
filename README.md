@@ -4,11 +4,11 @@ MonoRepo for all Flawless Development supported websites
 Contains all components and dependencies authored by Flawless Development necessary to support and manage releases of any website developed by Flawless Development.
 
 Structure:
-<repo root>/
-├── FlawlessDevelopment/
-│   ├── FlawlessAPI/
-│   │   ├── Endpoints/
-│   │   └── Properties/
+<repo root>
+├── FlawlessDevelopment
+│   ├── FlawlessAPI
+│   │   ├── Endpoints
+│   │   └── Properties
 │   │
 │   ├── FlawlessDevelopment/
 │   │   ├── Models/
