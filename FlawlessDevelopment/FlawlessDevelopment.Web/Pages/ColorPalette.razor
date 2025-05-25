@@ -1,6 +1,6 @@
 ﻿@namespace FlawlessDevelopment
 @page "/colortest"
-@using FlawlessDevelopment.Shared.Models
+@* @using FlawlessDevelopment.Shared.Models *@
 @inject FlawlessDevelopment.Shared.Services.MetaService MetaService
 
 <link href="css/index.css" rel="stylesheet" />
@@ -35,7 +35,7 @@
                 Author = "Flawless Development"
             });
     }
-    
+
     record ColorSwatch(string Name, string Hex);
 
     List<ColorSwatch> Colors = new()
