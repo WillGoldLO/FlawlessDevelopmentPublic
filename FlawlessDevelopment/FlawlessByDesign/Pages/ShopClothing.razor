@@ -1,0 +1,114 @@
+﻿@namespace FlawlessByDesign
+@page "/shop/clothing"
+@using FlawlessDevelopment.Shared.Models
+@using FlawlessDevelopment.Shared.Services
+@using System.Net.Http;
+@using Newtonsoft.Json;
+@inject HttpClient http
+
+<link href="css/index.css" rel="stylesheet" />
+<link href="css/shop.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alex+Brush&family=Barlow+Condensed&family=Bebas+Neue&family=Cinzel&family=Cormorant+Garamond&family=Dancing+Script&family=Great+Vibes&family=Josefin+Sans&family=Lato&family=Merriweather&family=Montserrat&family=Nanum+Myeongjo&family=Nunito&family=Open+Sans&family=Oswald&family=Playfair+Display&family=Raleway&family=Roboto&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+
+<FlawlessByDesign.Components.NavBranded />
+
+<nav class="collection-nav-bar">
+    <a href="/shop/clothing#1" class="collection-nav">Clothing Collection 1</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/shop/clothing#2" class="collection-nav">Clothing Collection 2</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/shop/clothing#3" class="collection-nav">Clothing Collection 3</a>
+</nav>
+
+
+@if (isLoading)
+{
+    <p style="padding: 2rem;">Loading clothing items...</p>
+}
+else if (items is null || !items.Any())
+{
+    <p style="padding: 2rem;">No clothing items found.</p>
+}
+else
+{
+    @*    try
+    {
+       var baseUri = NavigationManager.BaseUri;
+        var response = await Http.GetAsync("https://your-api-host/api/inventory?storeName=clothing");
+        if (response.IsSuccessStatusCode)
+        {
+            items = await response.Content.ReadFromJsonAsync<List<InventoryItem>>();
+        }
+
+
+        var task = inventoryService.GetItemsByStoreAsync("clothing");
+        task.Wait();
+        items = task.Result.ToList();
+    }
+    catch (Exception ex)
+    {
+        Console.Error.WriteLine($"Error loading clothing items: {ex.Message}");
+    }
+    finally
+    {
+        isLoading = false;
+    }
+ *@
+
+
+    @for (int i = 0; i < 3; i++)
+    {
+        <main class="category-clothing">
+            <h1 id="@($"{i + 1}")" class="collection-header">Clothing Collection @(i + 1)</h1>
+            <section class="item-grid">
+                @foreach (var item in items.Skip(i * 6).Take(6))
+                {
+                    <div class="item-card clothing">
+                        <img src="@item.ImageUrl" alt="@item.Name" />
+                        <h3>@item.Name</h3>
+                        <p>@item.Price</p>
+                    </div>
+                }
+            </section>
+        </main>
+    }
+
+}
+
+
+@code {
+    private IEnumerable<InventoryItem>? items;
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Console.Error.WriteLine($"Trying");
+            var response = await http.GetAsync("Inventory?storeName=clothing");
+            Console.Error.WriteLine($"Sent");
+            if (response.IsSuccessStatusCode)
+            {
+                Console.Error.WriteLine($"Success");
+                var respContent = await response.Content.ReadAsStringAsync();
+                items = JsonConvert.DeserializeObject<List<InventoryItem>>(respContent);
+            }
+
+            // // var task = inventoryService.GetItemsByStoreAsync("clothing");
+            // // task.Wait();
+            // // items = task.Result.ToList();
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error loading clothing items: {ex.Message}");
+        }
+        finally
+        {
+            Console.Error.WriteLine($"Done");
+            isLoading = false;
+        }
+    }
+}
+
+@*
+*@

@@ -1,0 +1,6 @@
+{
+  "navigationFallback": {
+    "rewrite": "index.html",
+    "exclude": [ "/sitemap.xml", "/robots.txt", "/favicon.ico" ]
+  }
+}

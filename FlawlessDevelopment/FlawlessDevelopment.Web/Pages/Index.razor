@@ -1,0 +1,324 @@
+@page "/"
+@using FlawlessDevelopment.Shared.Services
+@inject MetaService MetaService
+
+<style>
+    .hero {
+        background: linear-gradient(135deg, #1a365d 0%, #2B6CB0 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 100%);
+        z-index: 1;
+    }
+
+    .hero::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(0deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        z-index: 1;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 2rem;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-title {
+        font-size: 4rem;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        letter-spacing: -0.02em;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+        color: rgba(255,255,255,0.9);
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 4rem 2rem;
+        background: var(--primary-gradient);
+    }
+
+    .service-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .service-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #2B6CB0;
+    }
+
+    .service-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #2D3748;
+    }
+
+    .service-description {
+        color: #4A5568;
+        line-height: 1.6;
+    }
+
+    .expertise-section {
+        background: white;
+        padding: 4rem 0;
+    }
+
+    .expertise-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .expertise-item {
+        text-align: center;
+        padding: 2rem;
+        background: var(--background-light);
+        border-radius: 15px;
+        transition: var(--transition-standard);
+    }
+
+    .expertise-item:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .expertise-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--primary-dark);
+    }
+
+    .expertise-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-dark);
+    }
+
+    .expertise-description {
+        color: var(--text-light);
+        font-size: 0.9rem;
+    }
+
+    .cta-section {
+        background: linear-gradient(135deg, #1a365d 0%, #2B6CB0 100%);
+        padding: 6rem 0;
+        text-align: center;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 100%);
+        z-index: 1;
+    }
+
+    .cta-section::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(0deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        z-index: 1;
+    }
+
+    .cta-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .cta-button {
+        background: white;
+        color: #1a365d;
+        padding: 1rem 2rem;
+        border-radius: 30px;
+        border: none;
+        font-size: 1.2rem;
+        font-weight: 600;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<section class="hero">
+    <div class="hero-content text-center">
+        <h1 class="hero-title">Solutions by Flawless Development</h1>
+        <h2 class="hero-subtitle">Modern Cloud Platforms, DevOps Automation, and Enterprise Software Development That Enterprises Can Trust</h2>
+     @*    <button class="cta-button mt-4" @onclick="() => ShowContactModal()">Get Started</button> *@
+    </div>
+</section>
+
+<section class="services-grid">
+    <div class="service-card">
+        <div class="service-icon">☁️</div>
+        <h3 class="service-title">Cloud Architecture</h3>
+        <p class="service-description">Design and implement scalable cloud solutions that drive business growth and efficiency.</p>
+    </div>
+    <div class="service-card">
+        <div class="service-icon">⚡</div>
+        <h3 class="service-title">DevOps Automation</h3>
+        <p class="service-description">Streamline your development pipeline with modern automation and CI/CD practices.</p>
+    </div>
+    <div class="service-card">
+        <div class="service-icon">🔒</div>
+        <h3 class="service-title">Enterprise Security</h3>
+        <p class="service-description">Implement robust security measures to protect your business infrastructure and meet compliance demands.</p>
+    </div>
+</section>
+
+<section class="expertise-section">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Expertise</h2>
+        <div class="expertise-grid">
+            <div class="expertise-item">
+                <h3 class="expertise-title">Cloud Infrastructure</h3>
+                <p class="expertise-description">Design and deployment of scalable cloud architectures for enterprise applications.</p>
+            </div>
+            <div class="expertise-item">
+                <h3 class="expertise-title">DevOps Implementation</h3>
+                <p class="expertise-description">Streamlined development workflows and automated deployment pipelines.</p>
+            </div>
+            <div class="expertise-item">
+                <h3 class="expertise-title">Security Solutions</h3>
+                <p class="expertise-description">Comprehensive security measures for enterprise-grade applications.</p>
+            </div>
+            <div class="expertise-item">
+                <h3 class="expertise-title">Performance Optimization</h3>
+                <p class="expertise-description">Fine-tuning applications and infrastructure for maximum efficiency.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container cta-content">
+        <h2 class="mb-4">Ready to Transform Your Business?</h2>
+        <p class="mb-4">Let's discuss how we can help you achieve your goals with modern technology solutions.</p>
+        <a href="/contact" class="cta-button">Contact Us Today</a>
+    </div>
+</section>
+
+@if (showModal)
+{
+    <div class="modal fade show" style="display: block;" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Get in Touch</h5>
+                    <button type="button" class="btn-close" @onclick="() => HideContactModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="contact-form">
+                        <div class="mb-4">
+                            <input type="text" class="form-control" placeholder="Your Name" required />
+                        </div>
+                        <div class="mb-4">
+                            <input type="email" class="form-control" placeholder="Your Email" required />
+                        </div>
+                        <div class="mb-4">
+                            <input type="text" class="form-control" placeholder="Company Name" />
+                        </div>
+                        <div class="mb-4">
+                            <textarea class="form-control" rows="5" placeholder="How can we help you?" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button w-100">Send Message</button>
+                    </form>
+
+                    <div class="contact-info mt-4">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <span class="contact-text">Michigan.Gold.LO@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <span class="contact-text">(248) 882-8753</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+}
+
+@code {
+    private bool showModal = false;
+
+    private void ShowContactModal()
+    {
+        showModal = true;
+    }
+
+    private void HideContactModal()
+    {
+        showModal = false;
+    }
+}
+

@@ -1,0 +1,55 @@
+name: Azure Static Web Apps CI/CD - release-to-main
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        types: [opened, synchronize, reopened, closed]
+        branches:
+            - main
+        
+env:
+    APP_NAME: "FlawlessByDesign"  # Replace with your app name
+    REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub token for PR builds
+    WEB_API_TOKEN: ${{ secrets.AZURE_STATIC_WEB_APPS_GRAY_MEADOW_07EC34910 }} # Azure Static Web Apps API token variable in GitHub Secrets
+
+jobs:
+    build_and_deploy:
+        # if: github.event_name == 'pull_request' && github.event.action == 'closed'
+        runs-on: ubuntu-latest
+        name: Build and Deploy Job
+        environment:
+            name: 'Production'
+        steps:
+        -   name: Checkout code
+            uses: actions/checkout@v4
+
+        -   name: Set up .NET
+            uses: actions/setup-dotnet@v3
+            with:
+                dotnet-version: '9.0.x'
+
+        -   name: Restore dependencies
+            run: dotnet restore ${{ env.APP_NAME }}/${{ env.APP_NAME }}.csproj
+
+        -   name: Publish Blazor WebAssembly project
+            run: |
+                dotnet publish ${{ env.APP_NAME }}/${{ env.APP_NAME }}.csproj -c Release -o app
+                shopt -s dotglob
+                mv app/wwwroot/* app/
+                rmdir app/wwwroot
+
+        -   name: Deploy to Azure Static Web Apps
+            uses: Azure/static-web-apps-deploy@v1
+            with:
+                azure_static_web_apps_api_token: ${{ env.WEB_API_TOKEN }}
+                repo_token: ${{ env.REPO_TOKEN }}
+                action: "upload"
+                app_location: "app"
+                api_location: ""
+                output_location: ""  # Already flattened into "app" above
+                skip_app_build: true
+                env: |
+                    API_BASE_URL=https://my-api-host/api
+                    FEATURE_FLAG_X=true

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlawlessByDesign", "FlawlessByDesign.csproj", "{79DB9E98-AE68-0CDF-944B-38E773C2B22C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlawlessDevelopment.Shared", "..\FlawlessDevelopment\FlawlessDevelopment.Shared.csproj", "{61BFBB23-005A-FA41-E748-5D13F10FF776}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79DB9E98-AE68-0CDF-944B-38E773C2B22C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79DB9E98-AE68-0CDF-944B-38E773C2B22C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79DB9E98-AE68-0CDF-944B-38E773C2B22C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79DB9E98-AE68-0CDF-944B-38E773C2B22C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61BFBB23-005A-FA41-E748-5D13F10FF776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61BFBB23-005A-FA41-E748-5D13F10FF776}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61BFBB23-005A-FA41-E748-5D13F10FF776}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61BFBB23-005A-FA41-E748-5D13F10FF776}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D16B62CB-FBE4-431A-BBE2-11200028BA61}
+	EndGlobalSection
+EndGlobal

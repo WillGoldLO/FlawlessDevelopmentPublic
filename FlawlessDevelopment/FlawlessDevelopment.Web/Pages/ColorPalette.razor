@@ -1,0 +1,36 @@
+﻿@namespace FlawlessDevelopment
+@page "/colortest"
+
+<link href="css/index.css" rel="stylesheet" />
+<link href="css/profile.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alex+Brush&family=Barlow+Condensed&family=Bebas+Neue&family=Cinzel&family=Cormorant+Garamond&family=Dancing+Script&family=Great+Vibes&family=Josefin+Sans&family=Lato&family=Merriweather&family=Montserrat&family=Nanum+Myeongjo&family=Nunito&family=Open+Sans&family=Oswald&family=Playfair+Display&family=Raleway&family=Roboto&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+
+<FlawlessByDesign.Components.NavBranded />
+
+<h1>Select Your Color Theme</h1>
+<p>Click or note down the hex code of any color you like.</p>
+
+<div class="color-grid">
+    @foreach (var color in Colors)
+    {
+        <div class="color-box" style="background-color:@color.Hex">
+            <div class="color-info">
+                <span>@color.Name</span>
+                <span>@color.Hex</span>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    record ColorSwatch(string Name, string Hex);
+
+    List<ColorSwatch> Colors = new()
+    {
+        new("blu", "#008db9"),
+        new("Dark blu", "#2c677f"),
+        new("beige", "#e7e0c7"),
+        new("peach", "#f89f7e"),
+        new("blak", "#000000")       
+    };
+}

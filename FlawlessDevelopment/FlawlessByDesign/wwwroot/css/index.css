@@ -1,0 +1,105 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato','Segoe UI', Roboto, sans-serif;
+    height: 100%;
+    background-color: #111;
+    color: #fff;
+}
+
+h1 {
+    vertical-align: top;
+    text-align: center;
+}
+.meta-data {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+.landing-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.landing-background {
+    flex: 1;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('/images/ladonna-hero.jpg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center horizontally */
+    justify-content: flex-start; /* Align content to the top */
+    padding: 2rem;
+    text-align: center;
+}
+
+.landing-content {
+    max-width: 700px;
+    padding: 1rem;
+    margin-top: 2rem; /* Add some spacing from the top */
+}
+
+.top-nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    font-family: 'Lato', sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+    .top-nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        transition: background-color 0.3s ease;
+    }
+
+        .top-nav a:hover {
+            background-color: #ffffff;
+            color: black;
+        }
+
+.brand-name {
+    font-family: 'Lato','Segoe UI', Roboto, sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #fff;
+    white-space: nowrap; /* Prevent line breaks */
+}
+
+.brand-subtle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+.tagline {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #e0e0e0;
+    vertical-align: top;
+}
+
+.footer {
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    background-color: #000;
+    color: #aaa;
+}

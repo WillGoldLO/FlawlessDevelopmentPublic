@@ -1,0 +1,164 @@
+@page "/contact"
+@using FlawlessDevelopment.Shared.Models
+@inject FlawlessDevelopment.Shared.Services.MetaService MetaService
+
+<style>
+    .page-header {
+        background: linear-gradient(135deg, #1a365d 0%, #2B6CB0 100%);
+        padding: 6rem 0;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 100%);
+            z-index: 1;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(0deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1;
+        }
+
+    .header-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .contact-section {
+        padding: 5rem 0;
+        background: var(--background-light);
+    }
+
+    .contact-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .form-control {
+        border: 1px solid #E2E8F0;
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        margin-bottom: 1rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.1);
+        }
+
+    .submit-button {
+        background: linear-gradient(135deg, #1a365d 0%, #2B6CB0 100%);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        border: none;
+        font-weight: 600;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(43, 108, 176, 0.2);
+        }
+
+    .contact-info {
+        margin-top: 3rem;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-icon {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        color: var(--primary-dark);
+    }
+
+    .contact-text {
+        color: var(--text-light);
+    }
+</style>
+
+<section class="page-header">
+    <div class="container header-content">
+        <h1 class="display-4 fw-bold mb-4">Contact Us</h1>
+        <p class="lead">Let's discuss how we can help transform your business</p>
+    </div>
+</section>
+
+<section style="contact-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="contact-card">
+                    <form style="display:none">
+                        <div class="mb-4">
+                            <input type="text" class="form-control" placeholder="Your Name" required />
+                        </div>
+                        <div class="mb-4">
+                            <input type="email" class="form-control" placeholder="Your Email" required />
+                        </div>
+                        <div class="mb-4">
+                            <input type="text" class="form-control" placeholder="Company Name" />
+                        </div>
+                        <div class="mb-4">
+                            <textarea class="form-control" rows="5" placeholder="How can we help you?" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button w-100">Send Message</button>
+                    </form>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <span class="contact-text"><a href="mailto:Michigan.Gold.LO@gmail.com">Michigan.Gold.LO@gmail.com</a></span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <span class="contact-text">(248) 882-8753</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    protected override void OnInitialized()
+    {
+        MetaService.SetMetaTags(new MetaTags
+            {
+                Title = "Flawless Development - Services",
+                Description = "Explore our range of services including software development, cloud architecture, and compliance solutions.",
+                Keywords = "software development, cloud architecture, compliance, Azure, DevOps",
+                Author = "Flawless Development"
+            });
+    }
+}

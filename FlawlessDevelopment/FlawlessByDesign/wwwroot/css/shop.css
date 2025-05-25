@@ -1,0 +1,123 @@
+﻿html {
+    scroll-behavior: smooth;
+}
+
+.brand-wine {
+    font-family: 'Alex Brush','Segoe UI', Roboto, sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #fff;
+    white-space: nowrap; /* Prevent line breaks */
+}
+
+.brand-wine-subtle {
+    font-family: 'Oswald', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #fff;
+}
+/* store collection nav */
+.collection-nav {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+    .collection-nav:hover {
+        color: #666;
+    }
+
+    .collection-nav:visited {
+        color: #fff;
+    }
+
+.collection-header {
+    color: #000;
+    text-size-adjust:auto;
+}
+
+.collection-nav-bar {
+    position: sticky;
+    top: 75px; /* Stick to top */
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000; /* Make sure it floats above other content */
+    border-bottom: 1px solid #ddd; /* optional nice separator */
+}
+
+/* Grid page styling */
+.category-clothing {
+    background-color: #F3E0A4; /*Buttermilk*/
+}
+
+.category-wine {
+    background-color: #D8BFD8; /*#D8BFD8 Thistle */
+}
+
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: .2rem;
+    margin-bottom: 3rem;
+}
+
+.wine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: .2rem;
+    margin-bottom: 3rem;
+}
+
+.item-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3rem;
+    color: #666;
+}
+
+    .item-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5))
+    }
+
+    .item-card h3 {
+        margin: 0.5rem 0;
+    }
+
+    .item-card p {
+        color: #666;
+        font-size: 0.95rem;
+        text-align: center;
+    }
+
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .shop-categories {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .item-card img {
+        height: 150px;
+    }
+
+    .shop-card img {
+        height: 180px;
+    }
+}

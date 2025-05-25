@@ -1,0 +1,11 @@
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components
+
+<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(EmptyLayout)" />
+    </Found>
+    <NotFound>
+        <p>Sorry, page not found.</p>
+    </NotFound>
+</Router>

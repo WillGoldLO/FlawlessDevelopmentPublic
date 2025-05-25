@@ -1,0 +1,110 @@
+﻿@namespace FlawlessByDesign
+@page "/colortest"
+
+<link href="css/index.css" rel="stylesheet" />
+<link href="css/profile.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alex+Brush&family=Barlow+Condensed&family=Bebas+Neue&family=Cinzel&family=Cormorant+Garamond&family=Dancing+Script&family=Great+Vibes&family=Josefin+Sans&family=Lato&family=Merriweather&family=Montserrat&family=Nanum+Myeongjo&family=Nunito&family=Open+Sans&family=Oswald&family=Playfair+Display&family=Raleway&family=Roboto&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+
+<FlawlessByDesign.Components.NavBranded />
+
+<h1>Select Your Color Theme</h1>
+<p>Click or note down the hex code of any color you like.</p>
+
+<div class="color-grid">
+    @foreach (var color in Colors)
+    {
+        <div class="color-box" style="background-color:@color.Hex">
+            <div class="color-info">
+                <span>@color.Name</span>
+                <span>@color.Hex</span>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    record ColorSwatch(string Name, string Hex);
+
+    List<ColorSwatch> Colors = new()
+    {
+        new("Goldenrod", "#DAA520"),
+        new("Dark Goldenrod", "#B8860B"),
+        new("Light Goldenrod", "#EEDD82"),
+        new("Pale Goldenrod", "#EEE8AA"),
+        new("Gold", "#FFD700"),
+        new("Old Gold", "#CFB53B"),
+        new("Harvest Gold", "#DA9100"),
+        new("Saffron", "#F4C430"),
+        new("Tuscany", "#FCD12A"),
+        new("Amber", "#FFBF00"),
+        new("Vegas Gold", "#C5B358"),
+        new("Flax", "#EEDC82"),
+        new("Sunray", "#E3AB57"),
+        new("Mikado Yellow", "#FFC40C"),
+        new("Mustard", "#FFDB58"),
+        new("Royal Yellow", "#FADA5E"),
+        new("Earth Yellow", "#E1A95F"),
+        new("Antique Gold", "#D4AF37"),
+        new("Deep Yellow", "#F3C12C"),
+        new("Lion", "#C19A6B"),
+        new("Golden Beige", "#D9B76E"),
+        new("Muted Saffron", "#E4C066"),
+        new("Pale Amber", "#F0D58C"),
+        new("Soft Gold", "#D8C173"),
+        new("Honey Yellow", "#E3B778"),
+        new("Sand Dune", "#C9A66B"),
+        new("Desert Gold", "#D2B48C"),
+        new("Golden Mist", "#E6C68E"),
+        new("Sunlit Ochre", "#D4A76A"),
+        new("Antique Yellow", "#E8C88A"),
+        new("Buttermilk", "#F3E0A4"),
+        new("Golden Wheat", "#D9C28E"),
+        new("Muted Mustard", "#D2A85E"),
+        new("Pale Honey", "#E6D3A3"),
+        new("Golden Sand", "#D4B483"),
+        new("Soft Ochre", "#E2C58D"),
+        new("Light Harvest", "#E8D09E"),
+        new("Golden Glow", "#E3C78A"),
+        new("Warm Flax", "#D6B98A"),
+        new("Golden Cream", "#F0E2B6"),
+
+        new("Royal Purple", "#7851A9"),
+        new("Lavender Gray", "#C4C3D0"),
+        new("Orchid", "#DA70D6"),
+        new("Deep Lilac", "#9955BB"),
+        new("Mauve", "#E0B0FF"),
+        new("Medium Slate Blue", "#7B68EE"),
+        new("Eggplant", "#614051"),
+        new("Amethyst", "#9966CC"),
+        new("French Lilac", "#86608E"),
+        new("Twilight Lavender", "#8A496B"),
+        new("Thistle", "#D8BFD8"),
+        new("Wisteria", "#C9A0DC"),
+        new("Plum", "#DDA0DD"),
+        new("Grape", "#6F2DA8"),
+        new("Mulberry", "#70193D"),
+        new("Boysenberry", "#873260"),
+        new("Purple Heart", "#69359C"),
+        new("Iris", "#5A4FCF"),
+        new("Dark Orchid", "#9932CC"),
+        new("Dark Violet", "#9400D3"),
+        new("Electric Purple", "#BF00FF"),
+        new("Purple (X11)", "#A020F0"),
+        new("Vivid Violet", "#9F00FF"),
+        new("Blue Violet", "#8A2BE2"),
+        new("Medium Purple", "#9370DB"),
+        new("Fuchsia Blue", "#8F00FF"),
+        new("Rebecca Purple", "#663399"),
+        new("Royal Purple", "#7851A9"),
+        new("Heliotrope", "#DF73FF"),
+        new("Byzantine", "#BD33A4"),
+        new("Medium Orchid", "#BA55D3"),
+        new("Deep Magenta", "#CC00CC"),
+        new("French Violet", "#8806CE"),
+        new("Psychedelic Purple", "#DF00FF"),
+        new("Bright Lavender", "#BF94E4"),
+        new("Purple Pizzazz", "#FE4EDA"),
+        new("Rich Lavender", "#A76BCF"),
+        new("Violet (Web)", "#EE82EE")
+    };
+}

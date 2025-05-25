@@ -1,0 +1,122 @@
+﻿@page "/loader"
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.JSInterop
+@using FlawlessDevelopment.Shared.Models
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+@implements IDisposable
+
+<AuthorizeView Roles="admin">
+    <Authorized>
+        <div class="landing-wrapper">
+            <div class="landing-content">
+                <h1 class="brand-name">Upload Product</h1>
+
+                <div @ondrop="OnDrop" @ondragover:preventDefault class="drop-zone">
+                    <p>Drag and drop an image here or <input type="file" OnChange="OnFileSelected" /></p>
+                    @if (!string.IsNullOrEmpty(PreviewUrl))
+                    {
+                        <img src="@PreviewUrl" alt="Preview" style="max-width: 200px;" />
+                    }
+                </div>
+
+                <input type="text" placeholder="Product Name" @bind="ItemName" class="input-text" />
+                <input type="text" placeholder="Price" @bind="Price" class="input-text" />
+
+                <div class="radio-group">
+                    <label>Size:</label>
+                    @foreach (var s in new[] { "S", "M", "L" })
+                    {
+                        <label><input type="radio" name="size" @bind="Size" /> @s</label>
+                    }
+                </div>
+
+                <div class="radio-group">
+                    <label>Store:</label>
+                    @foreach (var store in Stores)
+                    {
+                        <label><input type="radio" name="store" @bind="StoreName" /> @store</label>
+                    }
+                </div>
+
+                <button @onclick="SubmitAsync" class="enter-button">Submit</button>
+                <p>@StatusMessage</p>
+            </div>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <p>You do not have access to this page.</p>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private IBrowserFile? UploadedFile;
+    private string? PreviewUrl;
+    private string ItemName = string.Empty;
+    private string Price = string.Empty;
+    private string Size = "M";
+    private string StoreName = "candles";
+    private string[] Stores = new[] { "candles", "clothing", "jewelry", "wine" };
+    private string StatusMessage = "";
+
+    private async Task OnFileSelected(InputFileChangeEventArgs e)
+    {
+        UploadedFile = e.File;
+        var buffer = new byte[UploadedFile.Size];
+        await UploadedFile.OpenReadStream().ReadAsync(buffer);
+        PreviewUrl = $"data:{UploadedFile.ContentType};base64,{Convert.ToBase64String(buffer)}";
+    }
+
+    private async Task OnDrop(DragEventArgs e)
+    {
+        // e.PreventDefault();
+        var files = await JS.InvokeAsync<IBrowserFile[]>("getDroppedFiles", e.DataTransfer);
+        if (files.Length > 0)
+        {
+            UploadedFile = files[0];
+        }
+    }
+
+    private async Task SubmitAsync()
+    {
+        if (UploadedFile is null)
+        {
+            StatusMessage = "Please upload an image.";
+            return;
+        }
+
+        try
+        {
+            var filePath = $"wwwroot/images/{StoreName}/{UploadedFile.Name}";
+            var directory = Path.Combine(Environment.CurrentDirectory, "wwwroot", "images", StoreName);
+            Directory.CreateDirectory(directory);
+
+            var path = Path.Combine(directory, UploadedFile.Name);
+            using var stream = new FileStream(path, FileMode.Create);
+            await UploadedFile.OpenReadStream().CopyToAsync(stream);
+
+            var inventoryItem = new InventoryItem()
+                {
+                    PartitionKey = StoreName,
+                    RowKey = Guid.NewGuid().ToString(),
+                    Name = ItemName,
+                    Price = Price,
+                    Size = Size,
+                    ImageUrl = $"/images/{StoreName}/{UploadedFile.Name}"
+                };
+
+            await InventoryService.SaveItemToStoreAsync(inventoryItem);
+            StatusMessage = "Upload successful!";
+        }
+        catch (Exception ex)
+        {
+            StatusMessage = $"Error: {ex.Message}";
+        }
+    }
+
+    public void Dispose() { }
+}

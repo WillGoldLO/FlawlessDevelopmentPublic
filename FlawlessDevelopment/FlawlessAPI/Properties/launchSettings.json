@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "FlawlessAPI": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7068",
+      "launchBrowser": false,
+      "applicationUrl": "https://localhost:7068;http://localhost:5068",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

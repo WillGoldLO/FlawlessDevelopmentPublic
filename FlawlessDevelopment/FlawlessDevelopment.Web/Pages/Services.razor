@@ -1,0 +1,283 @@
+@page "/services"
+@using FlawlessDevelopment.Shared.Models
+@inject FlawlessDevelopment.Shared.Services.MetaService MetaService
+
+<style>
+    .service-section {
+        padding: 5rem 0;
+        background: var(--background-light);
+    }
+</style>
+
+<section class="page-header">
+    <div class="container header-content">
+        <h1 class="display-4 fw-bold mb-4">Our Services</h1>
+        <p class="lead">Enterprise-grade solutions for modern businesses</p>
+    </div>
+</section>
+
+<section class="service-section">
+    <div class="container">
+        <h2 class="text-center mb-5">Software Development</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="service-card" data-bs-toggle="modal" data-bs-target="#API">
+                    <div class="service-icon">☁️</div>
+                    <h2 class="service-title">API & Backend Development</h2>
+                    <p class="service-description">Design and develop secure, high-performance APIs and resilient microservice architectures built for enterprise workloads.</p>
+                </div>
+            </div>
+            <div class="modal fade" id="API" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered" style="--bs-modal-width: 50%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">API & Backend Development</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li>RESTful APIs using .NET Core</li>
+                                <li>Event-driven architectures with Azure Functions and Service Bus</li>
+                                <li>Microservices and containerization using Docker and Kubernetes</li>
+                                <li>Integration with Azure-native services (e.g., Cosmos DB, Event Grid)</li>
+                                <li>Test Driven Development and Best Practices</li>
+                                <li>OAuth, Identity, and RBAC security measures</li>
+                            </ul>
+                            <p>From RESTful interfaces to event-driven systems, every solution is built with enterprise-grade security and engineered for scalability, observability, and compliance.</p>
+                            <p>Includes full telemetry integration, Azure-native service integration (e.g., Event Grid, Service Bus, API Management), and hardened authentication using OAuth2 or identity federation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="service-card" data-bs-toggle="modal" data-bs-target="#WEB">
+                    <div class="service-icon">🌐</div>
+                    <h2 class="service-title">Website & Blazor Development</h2>
+                    <p class="service-description">End-to-end web application development using modern .NET and Blazor optimized for both free-tier hosting and high-assurance regulated environments.</p>
+                </div>
+            </div>
+            <div class="modal fade" id="WEB" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered" style="--bs-modal-width: 50%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Website & Blazor Development</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li><strong>Enterprise-Grade Blazor Applications</strong> with responsive, component-based UIs and full .NET end-to-end type safety</li>
+                                <li><strong>Secure, Role-Based Access Control (RBAC)</strong> integrated with Identity Providers</li>
+                                <li><strong>Interactive, Real-Time User Experiences</strong> using SignalR and WebAssembly</li>
+                                <li><strong>Cloud-Native Deployment Pipelines</strong> with CI/CD across environments</li>
+                                <li><strong>API-First Architecture</strong> with seamless integration of RESTful and gRPC services</li>
+                                <li><strong>Hardened Data Flows</strong> using encryption at rest and in transit</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="text-center mb-5 mt-5">Networking and Site Reliability</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="service-card" data-bs-toggle="modal" data-bs-target="#DEVOPS">
+                    <div class="service-icon">⚡</div>
+                    <h2 class="service-title">DevOps & CI/CD Automation</h2>
+                    <p class="service-description">Automated build, test, security, and deployment pipelines designed for enterprise-grade speed, reliability, and governance.</p>
+                </div>
+            </div>
+            <div class="modal fade" id="DEVOPS" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered" style="--bs-modal-width: 50%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">DevOps & CI/CD Automation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li><strong>Modern DevOps Pipelines</strong> built with GitHub Actions or Azure DevOps</li>
+                                <li><strong>Infrastructure-as-Code (IaC)</strong> using Bicep, ARM templates, or Terraform</li>
+                                <li><strong>Secure Credential Management</strong> leveraging Azure Key Vault and GitHub Secrets</li>
+                                <li><strong>Environment Segregation Strategies</strong> for clean separation of workflows</li>
+                                <li><strong>Compliance-Ready CI/CD Workflows</strong> with built-in policy enforcement</li>
+                                <li><strong>Automated Testing Integration</strong> including unit, integration, and smoke tests</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="service-card" data-bs-toggle="modal" data-bs-target="#SRE">
+                    <div class="service-icon">🔍</div>
+                    <h2 class="service-title">Site Reliability Engineering (SRE)</h2>
+                    <p class="service-description">Modern SRE practices that bridge DevOps and operations to keep critical systems stable, observable, and continuously improving.</p>
+                </div>
+            </div>
+            <div class="modal fade" id="SRE" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered" style="--bs-modal-width: 50%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Site Reliability Engineering (SRE)</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <li><strong>Service Level Objectives (SLOs) and Indicators (SLIs)</strong> defined and tracked</li>
+                                <li><strong>Proactive Monitoring and Alerting</strong> using Azure Monitor and Prometheus</li>
+                                <li><strong>Automated Incident Response Workflows</strong> with runbooks and webhooks</li>
+                                <li><strong>Chaos Engineering Practices</strong> for resilience validation</li>
+                                <li><strong>Full-Stack Observability</strong> with centralized logs and metrics</li>
+                                <li><strong>Error Budget Policies</strong> to balance velocity and reliability</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<h2 class="text-center mb-5 mt-5">Modernization and Cloud Migrations</h2>
+<div class="row g-4">
+    <div class="col-md-6">
+        <div class="service-card" data-bs-toggle="modal" data-bs-target="#LIFT">
+            <div class="service-icon">☁️</div>
+            <h2 class="service-title">Azure Cloud Architecture & Migrations</h2>
+            <p class="service-description">Enterprise-grade cloud transformations for small to mid-sized organizations—designed for stability, security, and long-term cost control.</p>
+        </div>
+    </div>
+    <div class="modal fade" id="LIFT" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" style="--bs-modal-width: 50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Azure Cloud Architecture & Migrations</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li><strong>Lift-and-Shift Migrations</strong> of existing on-prem or legacy workloads to Azure Virtual Machines with minimal code changes</li>
+                        <li><strong>Cloud-Native Refactoring</strong> of legacy apps into modern architectures using Azure App Services, Azure Functions, or containers</li>
+                        <li><strong>Azure Resource Provisioning</strong> including VMs, App Services, Azure SQL, Storage Accounts, Key Vault, and Virtual Networks</li>
+                        <li><strong>Managed Identity Integration</strong> for secure, passwordless authentication between services and APIs</li>
+                        <li><strong>Network Architecture Design</strong> covering subnets, NSGs, hybrid VPN/ExpressRoute, and private endpoints for secure access</li>
+                        <li><strong>Monitoring and Telemetry Enablement</strong> via Azure Monitor, Log Analytics, and Application Insights</li>
+                        <li><strong>Identity and Access Management</strong> aligned with Azure AD roles, Conditional Access, and RBAC best practices</li>
+                        <li><strong>Cost Optimization Planning</strong> through right-sizing, reserved instances, hybrid use benefit, and resource tagging</li>
+                        <li><strong>Hybrid and Multi-Cloud Readiness</strong> with cross-cloud integration patterns and governance controls</li>
+                        <li><strong>Data Migration Services</strong> for structured, semi-structured, and unstructured data into Azure SQL, Cosmos DB, or Blob Storage</li>
+                        <li><strong>Automation via Infrastructure-as-Code</strong> using Bicep, ARM templates, or Terraform for repeatable, versioned deployments</li>
+                        <li><strong>Disaster Recovery and Backup Strategy</strong> aligned with Azure-native tools like Backup Vault and geo-redundant storage</li>
+                        <li><strong>Security and Compliance Alignment</strong> with Azure Policy, Microsoft Defender for Cloud, and regulatory templates</li>
+                        <li><strong>Change Management and Rollback Planning</strong> to minimize disruption and ensure operational continuity</li>
+                    </ul>
+                    <p>Plan and execute both lift-and-shift and full modernization strategies tailored to businesses with up to 300 employees. Includes provisioning of Azure VMs, App Services, Azure SQL, and integration with managed identity, networking, and monitoring systems. Refactor legacy systems into cloud-native architectures where beneficial, balancing modernization with ROI.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="service-card" data-bs-toggle="modal" data-bs-target="#COST">
+            <div class="service-icon">💰</div>
+            <h2 class="service-title">Cloud Cost Optimization</h2>
+            <p class="service-description">Reduce waste, increase efficiency, and scale with precision without sacrificing security or reliability.</p>
+        </div>
+    </div>
+    <div class="modal fade" id="COST" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" style="--bs-modal-width: 50%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cloud Cost Optimization</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li><strong>Azure Workload Analysis</strong> to identify underutilized resources, overprovisioned instances, and hidden cost drivers</li>
+                        <li><strong>Rightsizing Recommendations</strong> for VMs, databases, and storage based on actual usage patterns</li>
+                        <li><strong>Reserved Instance Planning</strong> for compute and database resources to achieve significant savings on long-term usage</li>
+                        <li><strong>Intelligent Auto-Scaling</strong> implementation to adjust resources dynamically based on load and usage</li>
+                        <li><strong>Workload Scheduling</strong> to power down non-essential services during off-peak hours or seasonal downtimes</li>
+                        <li><strong>Service Tier Optimization</strong> ensuring workloads are on the most appropriate pricing tiers</li>
+                        <li><strong>Cost-Effective Storage Solutions</strong> including lifecycle management, blob tiering, and Azure Storage Redundancy options</li>
+                        <li><strong>Performance-Tuning Adjustments</strong> for cost-effective balancing between performance requirements and budget constraints</li>
+                        <li><strong>Budget Alerts and Cost Forecasting</strong> with Azure Cost Management and budgeting tools</li>
+                        <li><strong>Regulatory Compliance and SLA Management</strong> to ensure cost optimization efforts do not compromise availability or security obligations</li>
+                        <li><strong>Custom Reporting and Dashboards</strong> for real-time visibility into cost drivers, savings, and optimization opportunities</li>
+                    </ul>
+                    <p>Perform deep analysis of your Azure workloads to uncover underused resources, misaligned service tiers, or overlooked cost drivers. Implement rightsizing, reserved instance planning, intelligent auto-scaling, and workload scheduling. Optimize for performance and budget while maintaining regulatory or SLA-driven availability.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="hidden-section">
+    <h2 class="text-center mb-5 mt-5">Compliance</h2>
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="service-card" data-bs-toggle="modal" data-bs-target="#SECURITY">
+                <div class="service-icon">🔒</div>
+                <h2 class="service-title">Security & Compliance</h2>
+                <p class="service-description">Enterprise-grade security architecture, policy enforcement, and compliance support—built into every solution.</p>
+            </div>
+        </div>
+        <div class="modal fade" id="SECURITY" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered" style="--bs-modal-width: 50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Security & Compliance</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Perform targeted or full-scope security audits of your Azure and on-prem environments. Implement Azure security best practices including Entra ID (formerly Azure AD), Role-Based Access Control (RBAC), Key Vault, Defender for Cloud, and secure CI/CD. Provide documentation, remediations, and controls needed for SOC 2, HIPAA, and ISO-aligned readiness. Also available for startups preparing for their first audit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="service-card" data-bs-toggle="modal" data-bs-target="#COMPLIANCE">
+                <div class="service-icon">📋</div>
+                <h2 class="service-title">SOX and HIPAA Compliance</h2>
+                <p class="service-description">Expertise in regulated environments where system integrity, auditability, and traceability are non-negotiable.</p>
+            </div>
+        </div>
+        <div class="modal fade" id="COMPLIANCE" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered" style="--bs-modal-width: 50%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">SOX and HIPAA Compliance</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Support for Sarbanes-Oxley (SOX) and HIPAA compliance efforts through proper logging, access control, change management, and data security practices. Design or audit technical controls to ensure compliance posture aligns with your risk and governance needs without overengineering your systems.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="cta-section">
+    <div class="container cta-content">
+        <h2 class="mb-4">Ready to Get Started?</h2>
+        <p class="mb-4">Let's discuss how we can help you achieve your business goals.</p>
+        <a href="/contact" class="cta-button">Contact Us</a>
+    </div>
+</section>
+
+@code {
+    protected override void OnInitialized()
+    {
+        MetaService.SetMetaTags(new MetaTags
+            {
+                Title = "Flawless Development - Services",
+                Description = "Explore our range of services including software development, cloud architecture, and compliance solutions.",
+                Keywords = "software development, cloud architecture, compliance, Azure, DevOps",
+                Author = "Flawless Development"
+            });
+    }
+}

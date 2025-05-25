@@ -1,0 +1,157 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@namespace FlawlessByDesign
+@page "/profile"
+
+<link href="css/index.css" rel="stylesheet" />
+<link href="css/profile.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alex+Brush&family=Barlow+Condensed&family=Bebas+Neue&family=Cinzel&family=Cormorant+Garamond&family=Dancing+Script&family=Great+Vibes&family=Josefin+Sans&family=Lato&family=Merriweather&family=Montserrat&family=Nanum+Myeongjo&family=Nunito&family=Open+Sans&family=Oswald&family=Playfair+Display&family=Raleway&family=Roboto&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+
+<FlawlessByDesign.Components.NavBranded />
+
+<h1 class="brand-name">
+    Flawless<br /><span class="brand-subtle"> by </span>Design
+</h1>
+<h1>Profile for LaDonna White</h1>
+
+<main class="profile-container">
+    <section class="bio">
+        <h1 class="bio">LaDonna White</h1>
+        <p class="subtitle">Athletic Fitness Model · Designer · Brand Ambassador</p>
+        <li><strong>Special Skills:</strong> Fashion, Hair, Makeup, Editorial, Dramatic Shoots</li>
+    </section>
+
+    <section class="bio">
+        <p>
+            Athletic fitness model with natural, fine, curly hair and a face that compliments many styles. Clean
+            and clear skin tone that loves natural sunlight, and body proportions appropriate for many styles of
+            modeling. Very personable with an adaptable look and creativity for themed, dramatic, or glamour
+            shoots. Years of experience with fashion, hair, and makeup.
+        </p>
+    </section>
+
+    <section class="resume">
+        <h2 class="bio">Experience</h2>
+        <ul>
+            <li><strong>Print:</strong> Jolie En Style Magazine</li>
+            <li>
+                <strong>Runway:</strong>
+                <ul>
+                    <li>Sleeves & Duvoe Mixer</li>
+                    <li>Raw Detroit</li>
+                    <li>Fight to Flight - Breast Cancer Awareness</li>
+                    <li>Burst of Elegance</li>
+                    <li>Native Detroiter Magazine Black Party</li>
+                    <li>Spirit of Excellence Award Ceremony</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Studio:</strong>
+                <ul>
+                    <li>Photog: Davide</li>
+                    <li>Designer: Fancee</li>
+                    <li>MUA: Wendy Elena</li>
+                </ul>
+            </li>
+            <li><strong>Promotions & Events:</strong> Badluck Promotions · Brand Ambassador</li>
+            <li><strong>Competition:</strong> Miami Trip Swimwear Competition – 1st Place</li>
+            <li><strong>Special Skills:</strong> Fashion, Hair, Makeup, Editorial, Dramatic Shoots</li>
+        </ul>
+    </section>
+
+    <section class="clients">
+        <h2 class="bio">Clients & Collaborations</h2>
+        <ul>
+            <li>The i GROUP</li>
+            <li>Diane Berry Fashion Editorial</li>
+            <li>Top Shelf or Die</li>
+            <li>Silver Fox Furs</li>
+            <li>First Lady Boutique</li>
+            <li>U Gotta Have It Boutique</li>
+            <li>Simply Casual</li>
+            <li>SKT Enterprises</li>
+        </ul>
+    </section>
+
+    <section class="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+            @foreach (var image in imageList)
+            {
+                var imgPath = $"images/{image}";
+                <div class="image-link" @onclick="() => ShowModal(image)">
+                    <img src="@imgPath" alt="Flawless by Design by LaDonna White" />
+                </div>
+            }
+        </div>
+    </section>
+
+    <div class="modal-backdrop" style="@(isModalVisible ? "display: flex;" : "display: none;")" @onclick="CloseModal">
+        <div class="modal-content" @onclick:stopPropagation>
+            <button class="modal-close" @onclick:stopPropagation @onclick="CloseModal">&times;</button>
+            <button class="modal-nav prev" @onclick="PrevImage">&#8592;</button>
+            @if (!string.IsNullOrEmpty(selectedImage))
+            {
+                <img src="@($"images/{selectedImage}")" alt="Flawless by Design by LaDonna White" />
+            }
+            else
+            {
+                <p>Loading...</p>
+            }
+            <button class="modal-nav next" @onclick="NextImage">&#8594;</button>
+        </div>
+    </div>
+
+    <footer class="profile-footer">
+        <small>Copyright &copy; Flawless by Design - All rights reserved.</small>
+    </footer>
+</main>
+
+@code {
+    private bool isModalVisible = false;
+    private string selectedImage = "";
+    // replace with dir model*.jpg
+    private string[] imageList = new[] { "model1.jpg", "model2.jpg", "model3.jpg", "model4.jpg","model5.jpg", "model6.jpg", "model7.jpg", "model8.jpg",
+    "model9.jpg", "model10.jpg", "model11.jpg", "model12.jpg", "model13.jpg", "model14.jpg" };
+
+    private void ShowModal(string image)
+    {
+        selectedImage = image;
+        isModalVisible = true;
+    }
+
+    private void CloseModal()
+    {
+        Console.WriteLine("CloseModal called");
+        isModalVisible = false;
+        // selectedImage = ""; // Optional: Clear the selected image
+        selectedImage = "model1.jpg"; // Test with a fixed image
+    }
+
+    private void PrevImage()
+    {
+        int index = Array.IndexOf(imageList, selectedImage);
+        if (index > 0)
+        {
+            selectedImage = imageList[index - 1];
+        }
+        else
+        {
+            selectedImage = imageList[imageList.Length - 1];
+        }
+    }
+
+    private void NextImage()
+    {
+        int index = Array.IndexOf(imageList, selectedImage);
+        if (index < imageList.Length - 1)
+        {
+            selectedImage = imageList[index + 1];
+        }
+        else
+        {
+            selectedImage = imageList[0];
+        }
+    }
+}
+
+
