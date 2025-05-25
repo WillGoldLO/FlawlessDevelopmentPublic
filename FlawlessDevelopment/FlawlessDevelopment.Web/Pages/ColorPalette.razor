@@ -1,5 +1,7 @@
 ﻿@namespace FlawlessDevelopment
 @page "/colortest"
+@using FlawlessDevelopment.Shared.Models
+@inject FlawlessDevelopment.Shared.Services.MetaService MetaService
 
 <link href="css/index.css" rel="stylesheet" />
 <link href="css/profile.css" rel="stylesheet" />
@@ -23,6 +25,17 @@
 </div>
 
 @code {
+        protected override void OnInitialized()
+    {
+        MetaService.SetMetaTags(new MetaTags
+            {
+                Title = "Flawless Development - Services",
+                Description = "Explore our range of services including software development, cloud architecture, and compliance solutions.",
+                Keywords = "software development, cloud architecture, compliance, Azure, DevOps",
+                Author = "Flawless Development"
+            });
+    }
+    
     record ColorSwatch(string Name, string Hex);
 
     List<ColorSwatch> Colors = new()
