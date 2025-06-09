@@ -1,4 +1,4 @@
-# WebsitesMonoRepo
+# Public mirror of Flawless web repo
 
 It is generated from the monorepo in steps:
 1. Monorepo commit to dev triggers GitHub action .github/workflows/azure-static-web-apps-jolly-beach-077f26310.yml to deploy to dev website
