@@ -20,15 +20,6 @@ Structure:
     │   ├── Endpoints/
     │   └── Properties/
     │
-    ├── FlawlessByDesign/
-    │   ├── Components/
-    │   ├── Pages/
-    │   ├── Properties/
-    │   └── wwwroot/
-    │       ├── css/
-    │       ├── fonts/
-    │       └── images/
-    │
     ├── FlawlessDevelopment.Shared/
     │   ├── Models/
     │   └── Services/
