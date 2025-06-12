@@ -1,0 +1,29 @@
+@page "/sitesurvey"
+@using FlawlessDevelopment.Shared.Models
+@using Microsoft.JSInterop
+@inject FlawlessDevelopment.Shared.Services.MetaService MetaService
+@inject IJSRuntime JSRuntime
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Site Survey Request</h5>
+    <p>Coming soon: Interactive form for site surveys.</p>
+  </div>
+</div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("updateMetaTags", new
+            {
+                Title = "Flawless Development - Site Survey Request",
+                Description = "Explore our range of services including software development, cloud architecture, and compliance solutions.",
+                Keywords = "Site Survey, cloud architecture, SRE, Azure, DevOps",
+                Author = "Flawless Development",
+                Canonical = "https://flawless-development.com/sitesurvey"
+            });
+        }
+    }
+}

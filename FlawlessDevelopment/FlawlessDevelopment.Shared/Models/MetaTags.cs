@@ -12,5 +12,6 @@ namespace FlawlessDevelopment.Shared.Models
         public string Description { get; set; } = "Explore our range of services including software development, cloud architecture, and compliance solutions.";
         public string Keywords { get; set; } = "software development, cloud architecture, compliance, Azure, DevOps";
         public string Author { get; set; } = "Flawless Development";
+        public string Canonical { get; set; } = "https://flawless-development.com";
     }
 }

@@ -10,9 +10,12 @@ namespace FlawlessDevelopment.Shared.Services
 
         public MetaService(IJSRuntime js) => _js = js;
 
-        public async Task SetMetaTags(MetaTags tags)
+        public event Action<MetaTags>? OnMetaChanged;
+
+        public void SetMetaTags(MetaTags tags)
         {
-            await _js.InvokeVoidAsync("metaService.setMetaTags", tags);
+        //    await _js.InvokeVoidAsync("metaService.setMetaTags", tags);
+            OnMetaChanged?.Invoke(tags);
         }
     }
 }

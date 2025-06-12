@@ -3,43 +3,56 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Static fallbacks for crawlers -->
     <title>Flawless Development | Cloud, Azure, DevOps & Software Solutions</title>
     <meta name="description" content="Flawless Development delivers expert cloud solutions, Azure consulting, and DevOps services. Accelerate your business with our development expertise." />
-    <link rel="canonical" href="https://flawless-development.com/" />
+    <meta name="keywords" content="software development, cloud architecture, compliance, Azure, DevOps" />
+    <meta name="author" content="Flawless Development" />
+    <link rel="canonical" href="https://flawless-development.com/" id="canonicalLink" />
+
+    <!-- Dynamic Meta tag handling -->
+    <script>
+        window.updateMetaTags = function (meta) {
+            if (meta.title) document.title = meta.title;
+
+            const setMeta = (name, content) => {
+                if (!content) return;
+                let tag = document.querySelector(`meta[name="${name}"]`);
+                if (!tag) {
+                    tag = document.createElement('meta');
+                    tag.setAttribute('name', name);
+                    document.head.appendChild(tag);
+                }
+                tag.setAttribute('content', content);
+            };
+
+            setMeta("description", meta.description);
+            setMeta("keywords", meta.keywords);
+            setMeta("author", meta.author);
+
+            let canonical = document.getElementById("canonicalLink");
+            if (!canonical) {
+                canonical = document.createElement("link");
+                canonical.setAttribute("rel", "canonical");
+                canonical.setAttribute("id", "canonicalLink");
+                document.head.appendChild(canonical);
+            }
+            canonical.setAttribute("href", meta.canonical || window.location.href);
+        };
+    </script>
+
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content="Flawless Development | Cloud, Azure, DevOps & Software Solutions" />
     <meta property="og:description" content="Expert cloud development, Azure consulting, and DevOps automation. Modern software solutions for enterprises." />
     <meta property="og:url" content="https://flawless-development.com/" />
     <meta property="og:type" content="website" />
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Flawless Development | Cloud, Azure, DevOps & Software Solutions" />
     <meta name="twitter:description" content="Expert cloud development, Azure consulting, and DevOps automation. Modern software solutions for enterprises." />
-    <!-- Dynamic Meta tag generation -->
-    <script>
-        window.metaService = {
-            setMetaTags: function (tags) {
-                if (tags.title) {
-                    document.title = tags.title;
-                }
 
-                function setOrCreateMeta(name, content) {
-                    if (!content) return;
-                    let element = document.querySelector(`meta[name="${name}"]`);
-                    if (!element) {
-                        element = document.createElement('meta');
-                        element.setAttribute('name', name);
-                        document.head.appendChild(element);
-                    }
-                    element.setAttribute('content', content);
-                }
-
-                setOrCreateMeta("description", tags.description);
-                setOrCreateMeta("keywords", tags.keywords);
-                setOrCreateMeta("author", tags.author);
-            }
-        };
-    </script>
     <!-- Organization Schema -->
     <script type="application/ld+json">
         {
@@ -53,16 +66,17 @@
           ]
         }
     </script>
+
     <base href="/" />
     <link href="css/site.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- AOS library for scroll animations -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <!-- Init animations + counter -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             AOS.init({ once: true });
-            // Counter animation
             document.querySelectorAll('.counter').forEach(el => {
                 const target = el.dataset.count;
                 let count = 0;

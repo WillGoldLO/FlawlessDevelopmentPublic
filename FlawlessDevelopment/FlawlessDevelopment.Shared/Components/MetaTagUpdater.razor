@@ -1,0 +1,28 @@
+﻿@using FlawlessDevelopment.Shared.Services
+@using Microsoft.JSInterop
+@inject MetaService MetaService
+@inject IJSRuntime JS
+
+@code {
+    protected override void OnInitialized()
+    {
+        MetaService.OnMetaChanged += HandleMetaChanged;
+    }
+
+    private async void HandleMetaChanged(MetaTags tags)
+    {
+        await JS.InvokeVoidAsync("updateMetaTags", new
+        {
+            title = tags.Title,
+            description = tags.Description,
+            keywords = tags.Keywords,
+            author = tags.Author,
+            canonical = tags.Canonical
+        });
+    }
+
+    public void Dispose()
+    {
+        MetaService.OnMetaChanged -= HandleMetaChanged;
+    }
+}

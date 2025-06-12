@@ -1,6 +1,8 @@
 @page "/contact"
 @using FlawlessDevelopment.Shared.Models
+@using Microsoft.JSInterop
 @inject FlawlessDevelopment.Shared.Services.MetaService MetaService
+@inject IJSRuntime JSRuntime
 
 <style>
     .page-header {
@@ -151,14 +153,18 @@
 </section>
 
 @code {
-    protected override void OnInitialized()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        MetaService.SetMetaTags(new MetaTags
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("updateMetaTags", new
             {
                 Title = "Flawless Development - Services",
                 Description = "Explore our range of services including software development, cloud architecture, and compliance solutions.",
                 Keywords = "software development, cloud architecture, compliance, Azure, DevOps",
-                Author = "Flawless Development"
+                Author = "Flawless Development",
+                Canonical = "https://flawless-development.com/contact"
             });
+        }
     }
 }
